@@ -1,3 +1,3 @@
 # teaching-python
 
-![bidoof](./bidoof.png)
+![bidoof](./assets/bidoof.png)
