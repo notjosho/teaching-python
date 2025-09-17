@@ -11,6 +11,7 @@ def celsius_to_fahrenheit(celsius):
     
     except ValueError as e:
         print(f'error: {e}')
+        return None
 
 print(celsius_to_fahrenheit(0))
 print(celsius_to_fahrenheit(100))
