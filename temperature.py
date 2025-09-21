@@ -1,3 +1,6 @@
+FREEZING_OFFSET = 32
+SCALE_FACTOR = 5/9
+
 def validate_temperature_input(temp):
     if not isinstance(temp, (int, float)):
         raise TypeError("Input must be a number.")
@@ -8,7 +11,7 @@ def validate_temperature_input(temp):
 def fahrenheit_to_celsius(fahrenheit):
     try:
         validate_temperature_input(fahrenheit)
-        celsius = (fahrenheit - 32) * 5/9
+        celsius = (fahrenheit - FREEZING_OFFSET) * SCALE_FACTOR
         return celsius
     except (ValueError, TypeError) as e:
         return f"Error: {e}"
