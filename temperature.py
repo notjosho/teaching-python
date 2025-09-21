@@ -1,17 +1,20 @@
+SCOPE = 9/5
+
 def celsius_to_fahrenheit(celsius):
     try:
-        if not isinstance(celsius, (int, float)):
-            raise ValueError('Value must be a number')
+        validation(celsius)
+        return celsius * SCOPE + 32
 
-        if celsius < -273.15:
-            raise ValueError('Temperature cannot be below zero')
-
-        fahrenheit= (celsius * 9/5)+32
-        return float(fahrenheit)
-    
     except ValueError as e:
         print(f'error: {e}')
         return None
+
+def validation(celsius):
+    if not isinstance(celsius, (int, float)):
+        raise ValueError(f'celsius value provided: {celsius} Value must be a number')
+
+    if celsius < -273.15:
+        raise ValueError('Temperature cannot be below zero')
 
 print(celsius_to_fahrenheit(0))
 print(celsius_to_fahrenheit(100))
