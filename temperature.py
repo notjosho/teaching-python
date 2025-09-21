@@ -4,7 +4,7 @@ ABSOLUTE_ZERO_FAHRENHEIT = -459.67
 
 def validate_temperature_input(temp):
     if not isinstance(temp, (int, float)):
-        raise TypeError("Input must be a number.")
+        raise TypeError(f"Input {temp} must be a number.")
     if temp < ABSOLUTE_ZERO_FAHRENHEIT:
         raise ValueError(f"Temperature cannot be below absolute zero ({ABSOLUTE_ZERO_FAHRENHEIT}°F).")
     return temp
