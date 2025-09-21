@@ -1,46 +1,22 @@
 import random
 
-def _validate_input(number, name):
+def validate_input(number, name):
     if not (isinstance(number, int) and number > 0):
         raise ValueError(f"'{name}' must be a positive integer.")
     return number
 
 def random_dice_generator(number_of_dice, faces=6):
     try:
-        validated_num_dice = _validate_input(number_of_dice, "number_of_dice")
-        validated_faces = _validate_input(faces, "faces")
+        validated_num_dice = validate_input(number_of_dice, "number_of_dice")
+        validated_faces = validate_input(faces, "faces")
         return [random.randint(1, validated_faces) for _ in range(validated_num_dice)]
-    except ValueError as e:
-        print(f"Error: {e} You provided: {number_of_dice} for 'number_of_dice' and {faces} for 'faces'.")
-        return []
+    except (ValueError, TypeError) as e:
+        return f"Error: {e}"
 
-if __name__ == '__main__':
-    while True:
-        # Loop for number of dice
-        while True:
-            try:
-                num_dice_input = input("Enter the number of dice to roll: ")
-                number_of_dice = int(num_dice_input)
-                break
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-
-        # Loop for number of faces
-        while True:
-            try:
-                num_faces_input = input("Enter the number of faces per die (press Enter for 6-sided): ")
-                if num_faces_input:
-                    faces = int(num_faces_input)
-                else:
-                    faces = 6
-                break
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-
-        results = random_dice_generator(number_of_dice, faces)
-        if results:
-            print(f"\nRolling {number_of_dice} dice with {faces} faces each: {results}")
-
-        keep_rolling = input("\nPress Enter to roll again or 'q' to exit: ")
-        if keep_rolling.lower() == 'q':
-            break
+# Test cases
+print("\n--- Test Cases ---")
+print(f"Rolling 1 die with 6 faces: {random_dice_generator(1)}")
+print(f"Rolling 2 dice with 8 faces: {random_dice_generator(2, 8)}")
+print(f"Rolling 3 dice with 20 faces: {random_dice_generator(3, 20)}")
+print(f"Rolling a negative number of dice: {random_dice_generator(-1)}")
+print(f"Rolling with a non-integer number of faces: {random_dice_generator(2, 'd6')}")
