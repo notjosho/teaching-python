@@ -6,7 +6,7 @@ def validate_temperature_input(temp):
     if not isinstance(temp, (int, float)):
         raise TypeError(f"Input '{temp}' must be a number.")
     if temp < ABSOLUTE_ZERO_FAHRENHEIT:
-        raise ValueError(f"Temperature cannot be below absolute zero ({ABSOLUTE_ZERO_FAHRENHEIT}°F).")
+        raise ValueError(f"Temperature cannot be below absolute zero ({ABSOLUTE_ZERO_FAHRENHEIT}°F) your input was {temp}.")
     return temp
 
 def fahrenheit_to_celsius(fahrenheit):
