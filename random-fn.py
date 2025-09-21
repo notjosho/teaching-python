@@ -1,6 +1,7 @@
 import random
 
 def validate_input(number, name):
+# This part of the code makes sure that the input is NOT a negative number and if it is it prints the error message stated in the raise
     if not (isinstance(number, int) and number > 0):
         raise ValueError(f"'{name}' must be a positive integer.")
     return number
