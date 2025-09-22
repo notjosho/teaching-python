@@ -1,7 +1,6 @@
 import random
 
 def validate_input(number, name):
-# This part of the code makes sure that the input is NOT a negative number and if it is it prints the error message stated in the raise
     if not (isinstance(number, int) and number > 0):
         raise ValueError(f"'{name}' must be a positive integer.")
     return number
@@ -11,6 +10,7 @@ def random_dice_generator(number_of_dice, faces=6):
         validated_num_dice = validate_input(number_of_dice, "number_of_dice")
         validated_faces = validate_input(faces, "faces")
         return [random.randint(1, validated_faces) for _ in range(validated_num_dice)]
+    # what the line above does is essentially telling the program to roll a die x times and put the results into a list
     except (ValueError, TypeError) as e:
         return f"Error: {e}"
 
