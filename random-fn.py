@@ -9,8 +9,14 @@ def random_dice_generator(number_of_dice, faces=6):
     try:
         validated_num_dice = validate_input(number_of_dice, "number_of_dice")
         validated_faces = validate_input(faces, "faces")
+        # The next line of code which is a list comprehension works in the following way:
+        # the square brackets tells the program that it'll be a list
+        # "random.randint(1, validated_faces)" this part calls the randint function from the random module
+        # it then generates a random integer which will be a number between 1 and the value of "validated_faces"
+        # "for _ in range(validated_num_dice)" this part sets up the loop needed for the amount of die
+        # "range(validated_num_dice)" creates a range of numbers from 0 up to the "validated_num_dice" 
+        # the "for _ in" the underscore means we just want to repeat the action a certain number of times aka "validated_num_dice"
         return [random.randint(1, validated_faces) for _ in range(validated_num_dice)]
-    # what the line above does is essentially telling the program to roll a die x times and put the results into a list
     except (ValueError, TypeError) as e:
         return f"Error: {e}"
 
