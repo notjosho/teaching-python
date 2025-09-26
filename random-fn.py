@@ -1,5 +1,7 @@
 import random
 
+
+# Dice Roller
 def validate_input(number, name):
     if not (isinstance(number, int) and number > 0):
         raise ValueError(f"'{name}' must be a positive integer.")
@@ -20,10 +22,38 @@ def random_dice_generator(number_of_dice, faces=6):
     except (ValueError, TypeError) as e:
         return f"Error: {e}"
 
-# Test cases
-print("\n--- Test Cases ---")
+# Coin Flip
+def coin_flip_simulator(number_of_flips=1):
+  try:
+    validated_number_of_flips = validation(number_of_flips)
+    result=[]
+    for i in range(validated_number_of_flips):
+      flip= random.choice(['heads', 'tails'])
+      result.append(flip)
+    return result
+  
+  except ValueError as e:
+    print(f'Error": {e}')
+    return []
+  
+def validation(number_of_flips):
+  if not isinstance(number_of_flips, int):
+    raise ValueError(f'"{number_of_flips}" Must be a number')
+  if number_of_flips <= 0:
+    raise ValueError(f'"{number_of_flips}"Must be positive')
+  return number_of_flips
+  
+
+# Test cases random dice generator
+print("\n--- Test Cases Dice Roller ---")
 print(f"Rolling 1 die with 6 faces: {random_dice_generator(1)}")
 print(f"Rolling 2 dice with 8 faces: {random_dice_generator(2, 8)}")
 print(f"Rolling 3 dice with 20 faces: {random_dice_generator(3, 20)}")
 print(f"Rolling a negative number of dice: {random_dice_generator(-1)}")
 print(f"Rolling with a non-integer number of faces: {random_dice_generator(2, 'd6')}")
+
+# Test cases coin flip
+print("\n--- Test Cases Coin Flip ---")
+print(coin_flip_simulator()) # ["heads"] or ["tails"]
+print(coin_flip_simulator(3)) # ["heads", "tails", "heads"] (example)
+print(coin_flip_simulator(5)) # list of 5 elements, each "heads" or "tails"
