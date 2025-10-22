@@ -17,9 +17,8 @@ class BankAccount:
             return "Error: Amount must be a number"
         elif (amount <= 0):
             return "Error: Amount must be greater than 0"
-        else:
-            self.balance += amount
-            return f"Deposit successful. New balance: ${self.balance}"
+        self.balance += amount
+        return f"Deposit successful. New balance: ${self.balance}"
         
     def withdraw(self, amount):
         if not isinstance(amount, (int, float)):
@@ -28,9 +27,9 @@ class BankAccount:
             return "Error: Amount must be greater than 0"
         elif (self.balance < amount):
             return f"Error: Insufficient funds"
-        else:
-            self.balance -= amount
-            return f"Withdrawal successful. New balance: ${self.balance}"
+
+        self.balance -= amount
+        return f"Withdrawal successful. New balance: ${self.balance}"
         
 
 account1 = BankAccount("Juan")
