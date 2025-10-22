@@ -1,36 +1,35 @@
 class BankAccount:
-    def __init__(self, name, money = 0):
+    def __init__(self, name, money=0):
         self.owner = name
         self.balance = money
-    
+
     def get_owner(self):
         return f"The owner is {self.owner}"
-    
+
     def get_balance(self):
         return f"the balance is {self.balance}"
-    
+
     def set_owner(self, name):
         self.owner = name
 
-    def deposit (self, amount):
+    def deposit(self, amount):
         if not isinstance(amount, (int, float)):
             return "Error: Amount must be a number"
-        elif (amount <= 0):
+        elif amount <= 0:
             return "Error: Amount must be greater than 0"
         self.balance += amount
         return f"Deposit successful. New balance: ${self.balance}"
-        
+
     def withdraw(self, amount):
         if not isinstance(amount, (int, float)):
             return "Error: Amount must be a number"
-        elif (amount <= 0):
+        elif amount <= 0:
             return "Error: Amount must be greater than 0"
-        elif (self.balance < amount):
+        elif self.balance < amount:
             return f"Error: Insufficient funds"
-
         self.balance -= amount
         return f"Withdrawal successful. New balance: ${self.balance}"
-        
+
 
 account1 = BankAccount("Juan")
 account2 = BankAccount("Maria", 500)
