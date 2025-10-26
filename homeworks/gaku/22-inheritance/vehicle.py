@@ -1,39 +1,37 @@
 class Vehicle:
     def __init__(self, name, color, speed):
-        self.name = name
-        self.color = color
-        self.max_speed = speed
+        self._name = name
+        self._color = color
+        self._max_speed = speed
 
     def start(self):
-        return print(f"{self.name} is starting")
+        print(f"{self._name} is starting")
 
     def stop(self):
-        return print(f"{self.name} is stopping")
+        print(f"{self._name} is stopping")
 
     def show_info(self):
-        return print(
-            f"{self.name} - Color: {self.color}, Max Speed: {self.max_speed} km/h"
-        )
+        print(f"{self._name} - Color: {self._color}, Max Speed: {self._max_speed} km/h")
 
 
 class LandVehicle(Vehicle):
     def drive(self):
-        return print(f"{self.name} is driving on land")
+        print(f"{self._name} is driving on land")
 
 
 class WaterVehicle(Vehicle):
     def sail(self):
-        return print(f"{self.name} is sailing on water")
+        print(f"{self._name} is sailing on water")
 
 
 class Car(LandVehicle):
     def honk(self):
-        return print(f"{self.name} says beep beep!")
+        print(f"{self._name} says beep beep!")
 
 
 class AmphibiousCar(Car, WaterVehicle):
     def switch_mode(self):
-        return print(f"{self.name} is switching between land and water mode")
+        print(f"{self._name} is switching between land and water mode")
 
 
 vehicle = Vehicle("Generic Vehicle", "Gray", 100)

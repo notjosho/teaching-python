@@ -1,17 +1,17 @@
 class Person:
     def __init__(self, name):
-        self.name = name
+        self._name = name
 
     def introduce(self):
-        return print(f"Hello, my name is {self.name}")
+        print(f"Hello, my name is {self._name}")
 
     def walk(self):
-        return print(f"{self.name} is walking")
+        print(f"{self._name} is walking")
 
 
 class Student(Person):
     def study(self):
-        return print(f"{self.name} is studying")
+        print(f"{self._name} is studying")
 
 
 person = Person("John")

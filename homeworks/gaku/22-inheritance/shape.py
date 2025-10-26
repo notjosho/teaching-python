@@ -1,22 +1,22 @@
 class Shape:
     def __init__(self, name):
-        self.name = name
+        self._name = name
 
     def describe(self):
-        return print(f"{self.name} is a shape")
+        print(f"{self._name} is a shape")
 
     def draw(self):
-        return print(f"Drawing {self.name}")
+        print(f"Drawing {self._name}")
 
 
 class Polygon(Shape):
     def has_sides(self):
-        return print(f"{self.name} has multiple sides")
+        print(f"{self._name} has multiple sides")
 
 
 class Triangle(Polygon):
     def count_angles(self):
-        return print(f"{self.name} has 3 angles")
+        print(f"{self._name} has 3 angles")
 
 
 shape = Shape("Circle")

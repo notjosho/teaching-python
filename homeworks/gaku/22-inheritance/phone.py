@@ -1,20 +1,20 @@
 class Phone:
     def __init__(self, name):
-        self.name = name
+        self._name = name
 
     def call(self):
-        return print(f"{self.name} is making a call")
+        print(f"{self._name} is making a call")
 
     def send_message(self):
-        return print(f"{self.name} is sending a message")
+        print(f"{self._name} is sending a message")
 
 
 class Camera(Phone):
     def take_photo(self):
-        return print(f"{self.name} is taking a photo")
+        print(f"{self._name} is taking a photo")
 
     def record_video(self):
-        return print(f"{self.name} is recording video")
+        print(f"{self._name} is recording video")
 
 
 class Smartphone(Camera):
