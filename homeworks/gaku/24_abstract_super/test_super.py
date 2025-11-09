@@ -99,8 +99,12 @@ def test_bird_class():
 
     # Test additional attributes
     assert bird.species == "Canary", f"Expected species 'Canary', got {bird.species}"
-    assert bird.flight_distance == 0, f"Expected flight_distance 0, got {bird.flight_distance}"
-    print(f"  ✓ Bird attributes: species={bird.species}, flight_distance={bird.flight_distance}")
+    assert (
+        bird._flight_distance == 0
+    ), f"Expected flight_distance 0, got {bird._flight_distance}"
+    print(
+        f"  ✓ Bird attributes: species={bird.species}, flight_distance={bird._flight_distance}"
+    )
 
     # Test speak method
     sound = bird.speak()
@@ -115,8 +119,10 @@ def test_bird_class():
     # Test play method with super() - decreases energy by 15+5=20, adds 5 to flight_distance
     energy = bird.play()
     assert energy == 80, f"Expected energy 80 (100-20), got {energy}"
-    assert bird.flight_distance == 5, f"Expected flight_distance 5, got {bird.flight_distance}"
-    print(f"  ✓ Bird play: energy={energy}, flight_distance={bird.flight_distance}")
+    assert (
+        bird._flight_distance == 5
+    ), f"Expected flight_distance 5, got {bird._flight_distance}"
+    print(f"  ✓ Bird play: energy={energy}, flight_distance={bird._flight_distance}")
 
     # Test eat method with super() - increases energy by 20+10=30
     energy = bird.eat()
@@ -127,8 +133,12 @@ def test_bird_class():
     bird.play()
     bird.play()
     assert bird.energy == 60, f"Expected energy 60 (100-40), got {bird.energy}"
-    assert bird.flight_distance == 15, f"Expected flight_distance 15, got {bird.flight_distance}"
-    print(f"  ✓ Bird multiple plays: energy={bird.energy}, flight_distance={bird.flight_distance}")
+    assert (
+        bird._flight_distance == 15
+    ), f"Expected flight_distance 15, got {bird._flight_distance}"
+    print(
+        f"  ✓ Bird multiple plays: energy={bird.energy}, flight_distance={bird._flight_distance}"
+    )
 
     print("Bird class tests passed!\n")
 
