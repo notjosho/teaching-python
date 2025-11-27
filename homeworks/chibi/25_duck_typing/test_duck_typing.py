@@ -1,7 +1,13 @@
 # Test file for Duck Typing Example
 # Duck Typing: "If it walks like a duck and quacks like a duck, it's a duck"
 # Objects are used based on behavior (methods), not type
-from duck_typing_example import CreditCard, PayPal, Bitcoin, BankTransfer, process_all_payments
+from duck_typing_example import (
+    CreditCard,
+    PayPal,
+    Bitcoin,
+    BankTransfer,
+    process_all_payments,
+)
 
 
 def test_creditcard_init():
@@ -59,7 +65,9 @@ def test_creditcard_get_transaction_fee():
     # $100 * 2.5% = $2.50
     fee = card.get_transaction_fee(100)
     assert fee == 2.5, (
-        "CreditCard.get_transaction_fee failed: Expected fee of $2.50 (2.5% of $100), got ${}".format(fee)
+        "CreditCard.get_transaction_fee failed: Expected fee of $2.50 (2.5% of $100), got ${}".format(
+            fee
+        )
     )
 
 
@@ -70,7 +78,9 @@ def test_paypal_get_transaction_fee():
     # $100 * 3% + $0.30 = $3.30
     fee = paypal.get_transaction_fee(100)
     assert fee == 3.30, (
-        "PayPal.get_transaction_fee failed: Expected fee of $3.30 (3% of $100 + $0.30), got ${}".format(fee)
+        "PayPal.get_transaction_fee failed: Expected fee of $3.30 (3% of $100 + $0.30), got ${}".format(
+            fee
+        )
     )
 
 
@@ -81,7 +91,9 @@ def test_bitcoin_get_transaction_fee():
     # $100 * 1% = $1.00
     fee = bitcoin.get_transaction_fee(100)
     assert fee == 1.0, (
-        "Bitcoin.get_transaction_fee failed: Expected fee of $1.00 (1% of $100), got ${}".format(fee)
+        "Bitcoin.get_transaction_fee failed: Expected fee of $1.00 (1% of $100), got ${}".format(
+            fee
+        )
     )
 
 
@@ -113,7 +125,9 @@ def test_creditcard_process_payment():
 
     # Message should mention the amount and payment type
     assert "100.00" in message, (
-        "CreditCard.process_payment failed: Expected '100.00' in message, got '{}'".format(message)
+        "CreditCard.process_payment failed: Expected '100.00' in message, got '{}'".format(
+            message
+        )
     )
     assert "credit card" in message.lower(), (
         "CreditCard.process_payment failed: Expected 'credit card' in message (case insensitive), got '{}'".format(
@@ -128,10 +142,14 @@ def test_paypal_process_payment():
     message = paypal.process_payment(100)
 
     assert "100.00" in message, (
-        "PayPal.process_payment failed: Expected '100.00' in message, got '{}'".format(message)
+        "PayPal.process_payment failed: Expected '100.00' in message, got '{}'".format(
+            message
+        )
     )
     assert "PayPal" in message, (
-        "PayPal.process_payment failed: Expected 'PayPal' in message, got '{}'".format(message)
+        "PayPal.process_payment failed: Expected 'PayPal' in message, got '{}'".format(
+            message
+        )
     )
 
 
@@ -141,10 +159,14 @@ def test_bitcoin_process_payment():
     message = bitcoin.process_payment(100)
 
     assert "100.00" in message, (
-        "Bitcoin.process_payment failed: Expected '100.00' in message, got '{}'".format(message)
+        "Bitcoin.process_payment failed: Expected '100.00' in message, got '{}'".format(
+            message
+        )
     )
     assert "bitcoin" in message.lower(), (
-        "Bitcoin.process_payment failed: Expected 'bitcoin' in message (case insensitive), got '{}'".format(message)
+        "Bitcoin.process_payment failed: Expected 'bitcoin' in message (case insensitive), got '{}'".format(
+            message
+        )
     )
 
 
@@ -154,10 +176,14 @@ def test_banktransfer_process_payment():
     message = bank.process_payment(100)
 
     assert "100.00" in message, (
-        "BankTransfer.process_payment failed: Expected '100.00' in message, got '{}'".format(message)
+        "BankTransfer.process_payment failed: Expected '100.00' in message, got '{}'".format(
+            message
+        )
     )
     assert "bank" in message.lower(), (
-        "BankTransfer.process_payment failed: Expected 'bank' in message (case insensitive), got '{}'".format(message)
+        "BankTransfer.process_payment failed: Expected 'bank' in message (case insensitive), got '{}'".format(
+            message
+        )
     )
 
 
@@ -170,21 +196,31 @@ def test_duck_typing_interface_contract():
 
         # All payment methods must have these methods/attributes
         assert hasattr(method, "process_payment"), (
-            "{} (interface contract) failed: Missing required method 'process_payment'".format(class_name)
+            "{} (interface contract) failed: Missing required method 'process_payment'".format(
+                class_name
+            )
         )
         assert hasattr(method, "get_transaction_fee"), (
-            "{} (interface contract) failed: Missing required method 'get_transaction_fee'".format(class_name)
+            "{} (interface contract) failed: Missing required method 'get_transaction_fee'".format(
+                class_name
+            )
         )
         assert hasattr(method, "requires_verification"), (
-            "{} (interface contract) failed: Missing required attribute 'requires_verification'".format(class_name)
+            "{} (interface contract) failed: Missing required attribute 'requires_verification'".format(
+                class_name
+            )
         )
 
         # Methods must be callable
         assert callable(getattr(method, "process_payment")), (
-            "{} (interface contract) failed: 'process_payment' is not callable".format(class_name)
+            "{} (interface contract) failed: 'process_payment' is not callable".format(
+                class_name
+            )
         )
         assert callable(getattr(method, "get_transaction_fee")), (
-            "{} (interface contract) failed: 'get_transaction_fee' is not callable".format(class_name)
+            "{} (interface contract) failed: 'get_transaction_fee' is not callable".format(
+                class_name
+            )
         )
 
 
@@ -199,7 +235,9 @@ def test_duck_typing_polymorphism():
         # Can call same methods on all types
         message = method.process_payment(250)
         assert message is not None, (
-            "{} (polymorphism) failed: process_payment(250) returned None".format(class_name)
+            "{} (polymorphism) failed: process_payment(250) returned None".format(
+                class_name
+            )
         )
         assert isinstance(message, str), (
             "{} (polymorphism) failed: process_payment should return str, got {}".format(
@@ -209,7 +247,9 @@ def test_duck_typing_polymorphism():
 
         fee = method.get_transaction_fee(250)
         assert fee is not None, (
-            "{} (polymorphism) failed: get_transaction_fee(250) returned None".format(class_name)
+            "{} (polymorphism) failed: get_transaction_fee(250) returned None".format(
+                class_name
+            )
         )
         assert isinstance(fee, (int, float)), (
             "{} (polymorphism) failed: get_transaction_fee should return int or float, got {}".format(
@@ -301,12 +341,14 @@ def test_process_all_payments():
 
     result = process_all_payments(
         payment_methods,
-        [100, 250]  # amounts to process
+        [100, 250],  # amounts to process
     )
 
     # Should return a formatted string
     assert isinstance(result, str), (
-        "process_all_payments failed: Expected return type str, got {}".format(type(result).__name__)
+        "process_all_payments failed: Expected return type str, got {}".format(
+            type(result).__name__
+        )
     )
 
     # Should contain the payment amounts
